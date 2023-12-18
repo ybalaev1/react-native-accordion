@@ -32,8 +32,15 @@
     "trailingComma": "es5"
   },
   "name": "react-native-accordion",
-  "repository": "https://github.com/ybalaev1/react-native-accrodion.git",
   "author": "ybalaev1 <y.balaev@ya.ru>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ybalaev1/react-native-accordion",
+    "directory": "/"
+  },
+  "bugs": {
+    "url": "https://github.com/ybalaev1/react-native-accordion/issues"
+  },
   "module": "dist/react-native-accordion.esm.js",
   "size-limit": [
     {
