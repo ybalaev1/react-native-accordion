@@ -1,12 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = require('react');
-var React__default = _interopDefault(React);
-var reactNative = require('react-native');
+import React, { memo, useState, useEffect } from 'react';
+import { Animated, FlatList, StyleSheet, LayoutAnimation, TouchableOpacity, Text, Easing } from 'react-native';
 
 var keyExtractor = function keyExtractor(index) {
   return index;
@@ -22,25 +15,25 @@ var Accordion = function Accordion(_ref) {
     typeAnimation = _ref.typeAnimation,
     animatedContainerStyle = _ref.animatedContainerStyle,
     titleStyle = _ref.titleStyle;
-  var _useState = React.useState(null),
+  var _useState = useState(null),
     currentIndex = _useState[0],
     setCurrentIndex = _useState[1];
   var configAnimation = function configAnimation() {
-    return reactNative.LayoutAnimation.configureNext(
+    return LayoutAnimation.configureNext(
     // @ts-ignore
-    reactNative.LayoutAnimation.Presets[typeAnimation]);
+    LayoutAnimation.Presets[typeAnimation]);
   };
   var iconArrow = require('./icons/arrowdown.png');
-  var iconChangeValue = new reactNative.Animated.Value(1);
+  var iconChangeValue = new Animated.Value(1);
   var spin = iconChangeValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '180deg']
   });
   var iconChange = function iconChange() {
-    reactNative.Animated.timing(iconChangeValue, {
+    Animated.timing(iconChangeValue, {
       toValue: 1,
       duration: 2000,
-      easing: reactNative.Easing.linear,
+      easing: Easing.linear,
       useNativeDriver: false
     }).start();
   };
@@ -49,7 +42,7 @@ var Accordion = function Accordion(_ref) {
     setCurrentIndex(key === currentIndex ? null : key);
     configAnimation();
   };
-  React.useEffect(function () {
+  useEffect(function () {
     if (isOpenFirstItem) {
       onItemPress(0);
     }
@@ -58,27 +51,27 @@ var Accordion = function Accordion(_ref) {
     var item = data.item,
       index = data.index;
     var key = keyExtractor(index);
-    return React__default.createElement(React__default.Fragment, null, React__default.createElement(reactNative.TouchableOpacity, {
+    return React.createElement(React.Fragment, null, React.createElement(TouchableOpacity, {
       onPress: function onPress() {
         return onItemPress(key);
       },
       activeOpacity: activeOpacity,
       key: key,
       style: [itemStyle, styles.itemStyle, displayedIconArrowDown && styles.isEnableIcon]
-    }, (item == null ? void 0 : item.title) && React__default.createElement(reactNative.Text, {
+    }, (item == null ? void 0 : item.title) && React.createElement(Text, {
       style: titleStyle
-    }, item.title), displayedIconArrowDown && React__default.createElement(reactNative.Animated.Image, {
+    }, item.title), displayedIconArrowDown && React.createElement(Animated.Image, {
       source: iconArrow,
       style: [key === currentIndex && {
         transform: [{
           rotate: spin
         }]
       }, styleIconArrowDown, styles.styleIconArrowDown]
-    })), item.content && React__default.createElement(reactNative.Animated.View, {
+    })), item.content && React.createElement(Animated.View, {
       style: (animatedContainerStyle)
     }, key === currentIndex && (item == null ? void 0 : item.content)));
   };
-  return React__default.createElement(reactNative.FlatList, {
+  return React.createElement(FlatList, {
     data: items,
     style: containerStyle && styles.container,
     renderItem: renderItem,
@@ -87,7 +80,7 @@ var Accordion = function Accordion(_ref) {
     }
   });
 };
-var styles = /*#__PURE__*/reactNative.StyleSheet.create({
+var styles = /*#__PURE__*/StyleSheet.create({
   container: {
     flex: 1
   },
@@ -108,7 +101,7 @@ var styles = /*#__PURE__*/reactNative.StyleSheet.create({
     width: 18
   }
 });
-var Accordion$1 = /*#__PURE__*/React.memo(Accordion);
+var Accordion$1 = /*#__PURE__*/memo(Accordion);
 
-exports.default = Accordion$1;
-//# sourceMappingURL=react-native-accordion.cjs.development.js.map
+export default Accordion$1;
+//# sourceMappingURL=react-native-accordion-memo.esm.js.map

@@ -31,7 +31,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "react-native-accordion",
+  "name": "react-native-accordion-memo",
   "author": "ybalaev1 <y.balaev@ya.ru>",
   "repository": {
     "type": "git",
